@@ -1,0 +1,6 @@
+#!/usr/bin/python
+
+from sccminutes import run_incremental_update
+
+if __name__ == '__main__':
+    run_incremental_update()
