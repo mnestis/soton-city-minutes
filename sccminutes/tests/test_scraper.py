@@ -18,3 +18,9 @@ class TestCommitteeList(TestCase):
         comm_list = sc._fetch_list_of_committees()
         for comm in comm_list:
             self.assertEqual(len(comm), 2)
+
+    def test_returned_items_are_int_and_str(self):
+        comm_list = sc._fetch_list_of_committees()
+        for comm_id, comm_name in comm_list:
+            self.assertIsInstance(comm_id, int)
+            self.assertIsInstance(comm_name, str)

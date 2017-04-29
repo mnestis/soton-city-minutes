@@ -32,7 +32,8 @@ def _fetch_list_of_committees():
 
     committees = committee_re.findall(list_page.text)
 
-    for comm_id, comm_name in committees:
-        print("{}: {}".format(comm_id, html.unescape(comm_name)))
+    committees = [(int(comm_id), html.unescape(comm_name))
+                  for comm_id, comm_name
+                  in committees]
 
     return committees
