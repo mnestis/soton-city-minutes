@@ -1,1 +1,1 @@
-from interface import run_incremental_update
+from .interface import run_incremental_update
