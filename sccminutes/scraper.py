@@ -3,10 +3,15 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 
-import html
 import re
 import requests
 import time
+
+try:
+    import html
+except ImportError:
+    from HTMLParser import HTMLParser
+    html = HTMLParser()
 
 SCC_BASE = "http://www.southampton.gov.uk/modernGov/"
 
