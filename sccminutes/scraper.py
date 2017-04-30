@@ -37,3 +37,30 @@ def _fetch_list_of_committees():
                   in committees]
 
     return committees
+
+
+def _fetch_list_of_meetings(committee_id):
+    list_page = requests.get(MEETING_LIST_PAGE.format(committee_id))
+    time.sleep(DOS_DELAY)
+
+    if list_page.status_code != 200:
+        raise CouncilHttpError("Unable to load the meeting list page.")
+
+    meeting_re = re.compile("ieListDocuments\.aspx\?" +
+                            "CId=(\d+)&amp;" +
+                            "MId=(\d+)&amp;" +
+                            "Ver=(\d+).*>" +
+                            "(.*)</a>")
+
+    meetings = meeting_re.findall(list_page.text)
+
+    print(meetings)
+
+    meetings = [(int(comm_id),
+                 int(meet_id),
+                 int(ver),
+                 html.unescape(meet_time))
+                for comm_id, meet_id, ver, meet_time
+                in meetings]
+
+    return meetings
