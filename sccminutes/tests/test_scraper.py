@@ -23,7 +23,10 @@ class TestCommitteeList(TestCase):
         comm_list = sc._fetch_list_of_committees()
         for comm_id, comm_name in comm_list:
             self.assertIsInstance(comm_id, int)
-            self.assertIsInstance(comm_name, str)
+            try:
+                self.assertIsInstance(comm_name,  unicode)
+            except NameError:
+                self.assertIsInstance(comm_name, str)
 
 
 class TestMeetingList(TestCase):
@@ -59,4 +62,7 @@ class TestMeetingList(TestCase):
             self.assertIsInstance(comm_id, int)
             self.assertIsInstance(meet_id, int)
             self.assertIsInstance(ver, int)
-            self.assertIsInstance(meet_time, str)
+            try:
+                self.assertIsInstance(meet_time, unicode)
+            except NameError:
+                self.assertIsInstance(meet_time, str)
