@@ -54,8 +54,6 @@ def _fetch_list_of_meetings(committee_id):
 
     meetings = meeting_re.findall(list_page.text)
 
-    print(meetings)
-
     meetings = [(int(comm_id),
                  int(meet_id),
                  int(ver),
