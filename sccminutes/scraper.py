@@ -25,7 +25,7 @@ def _fetch_list_of_committees():
     list_page = requests.get(COMMITTEE_LIST_PAGE)
     time.sleep(DOS_DELAY)
 
-    if list_page.status_code != 200:
+    if list_page.status_code != 200:  # pragma: no cover
         raise CouncilHttpError("Unable to load the committee list page.")
 
     committee_re = re.compile("ieListMeetings\.aspx\?CId=(\d+).*>(.*)</a>")
@@ -43,7 +43,7 @@ def _fetch_list_of_meetings(committee_id):
     list_page = requests.get(MEETING_LIST_PAGE.format(committee_id))
     time.sleep(DOS_DELAY)
 
-    if list_page.status_code != 200:
+    if list_page.status_code != 200:  # pragma: no cover
         raise CouncilHttpError("Unable to load the meeting list page.")
 
     meeting_re = re.compile("ieListDocuments\.aspx\?" +
